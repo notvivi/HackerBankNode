@@ -1,0 +1,49 @@
+Zadání:
+- Příkazy podle tabulky na moodle
+- Banka ve které lze vytvořit bankovní účet, vložit do ní peníze nebo je vybrat. 
+- Konfigurace: Nastavení portu, Timeout a pokud nenačítáme dynamicky IP, tak IP
+- Po vypnutí/restartu aplikace se neztratí informace o bankovních účtech a jejich částkách
+- Dobrá architektura
+- Příkazy AD, AW, AB, než tu kterou má Vaše aplikace fungovali jako proxy. Připojili se k spolužákovi podle zadané ip adresy, příkaz provedli a vrátily výsledek.
+
+- Příkaz RP <number> (Robbery plan) pouze pro náš server, umožní vypsat plán podle aktuálního stavu P2P (lze vyloupit celou banku nebo nic)
+- Cílová částka pro loupež (RP 100), aplikace projde síť (zjistí kolik pěnez je v jaké bance a kolik klientů tam je) -> 10.1.2.3 má celkem 500000 a 10 klientů
+- Loupež se plánuje tak, aby se dosáhlo co nejblíže k cílové částce (zároveň okradeno co nejméně klientů)
+- Odpověď: RP  <message>, např: RP K dosažení 1000000 je třeba vyloupit banky 10.1.2.3 a 10.1.2.85 a bude poškozeno jen 21 klientů.
+
+Úkoly a požadavky:
+- Více návrhů architektur/diagramů, workflow diagram apod
+- UI (Webovka nebo Tkinker) pro monitoring běhu node (Velice jednoduché, ale nesmí být v konzoli) + bezpečné vypnutí
+- Použití putty (navrhoval i telnet)
+- Timeout 5s (Nastavitelný?) pro všechny odpovědi, volání příkazů a obsluhu klientů
+- Když něco trvá déle než je timeout -> pracovat jako s chybou
+- Testovat s projektem někoho jiného
+- Práce s klienty paralerně (fyzicky)
+- Vlastní vylepšení, rozšíření, architektura, monitoring apod
+- Jednořádkové zprávy
+- Logování (Log i provozu s ostatními nodes, musí být dohledatelné, co se dějě)
+- Akceptování malých a velkých písmen?
+- Exe soubor (Nesmíme použít IDE, použít TCP/IP)
+- Port 65525 - 65535
+- UTF-8 kódování
+- Návrhový vzor/Architektura pro ukládání trvalých dat (Domluvit a vybrat)
+- Spojení má ukončovat klient
+- Měna jsou dolary $
+
+Detaily:
+- Nepoužívát vlastní příkazy
+
+Průběžná dokumentace:
+- CHANGELOG.md (Naše příspěvky k projektu)(Komentare o tom, kdo dělal jaky script?/veci)
+- Dokumentace v kodu
+
+Normální dokumentace:
+- Readme
+- Pdf dokumentace - zdroje ze kterých jsme čerpali (AI link na promty a rozhovor), seznam odkazů na znovupoužitý zdrojový kod, spuštění a ovládání aplikace, diagramy
+
+Odevzdání:
+Prezentace začne ukázkou souboru CHANGELOG.md
+Názorná demonstrace aplikace včetně propojení s alespoň dvěma projekty jiných dvojic
+Hodnocen bude na závěr hodiny každý žák samostatně podle svého konkrétního přínosu ke společnému projektu, 
+zejména podle kódu a ověření znalostí přímo při odevzdání, které může zahrnovat i pokyny k opravě případných nedostatků nebo požadavků na drobné změny. 
+Během hodiny tedy oba autoři musí předvést schopnost kód upravovat ve společném repozitáři.
