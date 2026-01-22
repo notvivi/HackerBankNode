@@ -1,20 +1,23 @@
 # Contributing Guide
 ## This document describes the rules and workflow for contributing.
 
-- To get started, clone repository with `git clone [<repo-url>](https://github.com/notvivi/HackerBankNode.git)`.
-- Create a new branch from `main` for your changes. We use Trunk-Based Development with short-lived feature branches.
-- Branch naming convention:
-`feature/<short-description>`,
-`fix/<short-description>`,
-`refactor/<short-description>`,
-`docs/<short-description>`.
-- Examples:
-`feature/authentication`,
-`fix/null-reference`,
-`docs/api-readme`.
+To get started, clone repository with `git clone https://github.com/notvivi/HackerBankNode.git`.
+Create a new branch from `main` for your changes. We use Trunk-Based Development with short-lived feature branches.
+
+Branch naming convention:
+- `feature/<short-description>`,
+- `fix/<short-description>`,
+- `refactor/<short-description>`,
+- `docs/<short-description>`.
+
+Examples:
+- `feature/authentication`,
+- `fix/null-reference`,
+- `docs/api-readme`.
 
 ## We follow Conventional Commits for commit messages.
-- Format: `<type>(optional-scope): <description>`.
+Format: `<type>(optional-scope): <description>`.
+
 Types include:
 - `feat` for new features,
 - `fix` for bug fixes,
@@ -22,6 +25,7 @@ Types include:
 - `docs` for documentation,
 - `test` for tests,
 - and `chore` for maintenance.
+
 Examples:
 - `feat(auth): add JWT authentication`,
 - `fix(api): handle null user case`,
