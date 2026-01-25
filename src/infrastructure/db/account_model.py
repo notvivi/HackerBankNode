@@ -10,6 +10,8 @@ class AccountModel(Base):
     account balance management and protects its invariants.
     Direct modification of the internal state is prohibited;
     all changes must be performed through domain.
+
+    Author : Solonitsyn Maksym
     """
 
     __tablename__ = "accounts"
