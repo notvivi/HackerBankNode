@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### [0.1.0] - 2026-01-25
+*Author: Solonitsyn Maksym*
+#### Added
+- Added account repository
+- Added database async sessions
+- Added settings for parsing 'config.json' for database connection
+#### Changed
+- N/A
+
+#### Deprecated
+- N/A
+
+#### Removed
+- N/A
+
+#### Fixed
+- N/A
+
+#### Security
+- N/A
+
+### [0.1.0] - 2026-01-25
 *Author: Vilma Tomanová*
 #### Added
 - Added config file (log file path, port and timeout)
@@ -26,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - N/A
 
 ### [0.1.0] - 2026-01-24
+*Author: Solonitsyn Maksym*
 #### Added
 - Added requirements.txt for pip env installation
 - Added unit test for testing banking account
@@ -45,6 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - N/A
 
 ### [0.1.0] - 2026-01-23
+*Author: Solonitsyn Maksym*
 #### Added
 - Added `AccountModel` ORM entity for database representation of bank accounts.
   - Columns: `id` (primary key), `number` (unique, non-null), `balance` (non-null).
