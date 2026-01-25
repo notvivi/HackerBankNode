@@ -1,4 +1,4 @@
-from domain.errors import DomainError
+from domain.bank.errors import DomainError
 
 class Account:
     """
@@ -22,6 +22,8 @@ class Account:
     balance : int
         Current account balance in dollars.
         Read-only property.
+
+    Author : Solonitsyn Maksym
     """
 
     def __init__(self, number: int, balance: int):
