@@ -1,0 +1,5 @@
+sqlalchemy==2.0.25
+black==26.1.0
+mypy==1.8.0
+ruff==0.2.1
+pytest==8.0.0

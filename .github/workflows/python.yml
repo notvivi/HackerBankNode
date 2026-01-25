@@ -25,17 +25,21 @@ jobs:
 
     - name: Install dependencies
       run: |
+        python -m venv .venv
         python -m pip install --upgrade pip
         pip install ruff black mypy pytest coverage
+        pip install -r requirements.txt
 
     - name: Lint with Ruff
-      run: ruff check .
+      run: ruff check src/
 
     - name: Check formatting with Black
-      run: black --check .
+      run: |
+        black src/
+        black --check src/
 
     - name: Type check with Mypy
-      run: mypy .
+      run: mypy src/
 
     - name: Run tests with pytest
       run: pytest tests/
