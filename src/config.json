@@ -2,6 +2,8 @@
   "log_file": "C:/Users/vtoma/Downloads/logtest.txt.txt",
   "port": 65525,
   "timeout": 5,
+  "ip-network": "",
+  "ip-mask": "",
   "database": {
     "sqlite_path": "db/hackerbank.db"
   }
