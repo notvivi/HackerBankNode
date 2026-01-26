@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [0.1.0] - 2026-01-26
+*Author: Vilma Tomanová*
+#### Added
+- Added ip network and ip mask into the config file
+#### Changed
+- N/A
+
+#### Deprecated
+- N/A
+
+#### Removed
+- N/A
+  
+#### Fixed
+- Fixed exception error and import error
+  
+#### Security
+- N/A
+
 ### [0.1.0] - 2026-01-25
 *Author: Solonitsyn Maksym*
 #### Added
