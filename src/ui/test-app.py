@@ -1,18 +1,15 @@
 import os
 import json
 import sys
-
 import customtkinter as ctk
 from frontpage import FrontPage
 from monitoring import MonitoringPage
 from tkinter import messagebox
-
-
+import resource_path
 
 base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(base_path, "..", "lib"))
 sys.path.insert(0, os.path.join(base_path, "lib"))
-import resource_path
 
 
 ctk.set_appearance_mode("dark")
@@ -32,7 +29,7 @@ def is_config_ok(cfg):
             port_ok = isinstance(cfg.get("port"), int) and 65525 <= cfg.get("port") <= 65535
             timeout_ok = isinstance(cfg.get("timeout"), int) and cfg.get("timeout") > 0
             return log_ok and port_ok and timeout_ok
-        except:
+        except TypeError:
             return False
 
 class App(ctk.CTk):
