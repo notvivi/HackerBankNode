@@ -1,16 +1,17 @@
 import os
 import json
 import sys
-import customtkinter as ctk
-from frontpage import FrontPage
-from monitoring import MonitoringPage
-from tkinter import messagebox
-import resource_path
+
 
 base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(base_path, "..", "lib"))
 sys.path.insert(0, os.path.join(base_path, "lib"))
 
+import customtkinter as ctk
+from frontpage import FrontPage
+from monitoring import MonitoringPage
+from tkinter import messagebox
+import resource_path
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -20,8 +21,21 @@ CONFIG_PATH = resource_path.resource_path("src/config.json")
 def load_config():
     if not os.path.exists(CONFIG_PATH):
         return {}
-    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except json.JSONDecodeError as e:
+        messagebox.showwarning(
+            title="Configuration error",
+            message="Configuration file is corrupted. Fix or recreate src/config.json before running the app.",
+        )
+        return None
+    except Exception as e:
+        messagebox.showwarning(
+            title="Configuration error",
+            message="Unexpected error.",
+        )
+        return None
 
 def is_config_ok(cfg):
         try:
@@ -62,7 +76,7 @@ class App(ctk.CTk):
         self.frontpage.pack_forget()
 
         if self.monitoring is None:
-            self.monitoring = MonitoringPage(self, self.open_frontpage)
+            self.monitoring = MonitoringPage(self,self.open_frontpage)
 
         self.monitoring.pack(fill="both", expand=True)
 
@@ -72,4 +86,8 @@ class App(ctk.CTk):
         self.frontpage.pack(fill="both", expand=True)
 
 if __name__ == "__main__":
+    config = load_config()
+    if config is None:
+        print()
+        sys.exit(1)
     App().mainloop()

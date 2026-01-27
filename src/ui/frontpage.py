@@ -1,5 +1,7 @@
+import ipaddress
+
 import customtkinter as ctk
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 import json
 
 class FrontPage(ctk.CTkFrame):
@@ -9,6 +11,8 @@ class FrontPage(ctk.CTkFrame):
         self.config_path = config_path
 
         self.log_file = ctk.StringVar()
+        self.ip_network = ctk.StringVar(value="192.168.1.0")
+        self.ip_mask = ctk.StringVar(value="24")
         self.port = ctk.StringVar(value="65525")
         self.timeout = ctk.StringVar(value="5")
 
@@ -16,11 +20,21 @@ class FrontPage(ctk.CTkFrame):
         ctk.CTkEntry(self, textvariable=self.log_file, width=400).pack()
         ctk.CTkButton(self, text="Select file", command=self.select_file).pack(pady=5)
 
-        ctk.CTkLabel(self, text="Port").pack(pady=5)
+        ctk.CTkLabel(self, text="Ip Network").pack(pady=5)
         ctk.CTkOptionMenu(
             self,
-            values=[str(p) for p in range(65525, 65536)],
-            variable=self.port
+            values=["5", "10", "30", "60"],
+            variable=self.timeout
+        ).pack()
+
+        ctk.CTkLabel(self, text="IP Network").pack(pady=5)
+        ctk.CTkEntry(self, textvariable=self.ip_network, width=200).pack()
+
+        ctk.CTkLabel(self, text="IP Mask").pack(pady=5)
+        ctk.CTkOptionMenu(
+            self,
+            values=[str(p) for p in range(1, 33)],
+            variable=self.ip_mask
         ).pack()
 
         ctk.CTkLabel(self, text="Timeout").pack(pady=5)
@@ -44,13 +58,36 @@ class FrontPage(ctk.CTkFrame):
             self.log_file.set(path)
 
     def save(self):
+
+        network = self.validate_network_ip()
+        if not network:
+            return
+
         data = {
             "log_file": self.log_file.get(),
             "port": int(self.port.get()),
-            "timeout": int(self.timeout.get())
+            "timeout": int(self.timeout.get()),
+            "ip_network": self.ip_network.get(),
+            "ip_mask": int(self.ip_mask.get())
         }
         with open(self.config_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
 
         self.on_config_saved(data)
+
+    def validate_network_ip(self):
+        try:
+            network = ipaddress.IPv4Network(
+                f"{self.ip_network.get()}/{self.ip_mask.get()}",
+                strict=True
+            )
+            return network
+        except ValueError:
+            messagebox.showwarning(
+                title="Invalid IP",
+                message="Inserted IP is invalid.",
+                icon="warning"
+            )
+
+            return None
 
