@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-from src.infrastructure.db.account_model import AccountModel
+from infrastructure.db.account_model import AccountModel
 
 class AccountRepository:
     """
