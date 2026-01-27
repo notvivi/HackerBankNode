@@ -1,7 +1,12 @@
+#Author: Tomanová Vilma
+
 import customtkinter as ctk
 
 class MonitoringPage(ctk.CTkFrame):
-    def __init__(self, master, on_back):
+    """
+    Class for Monitoring Page
+    """
+    def __init__(self, master,on_back):
         super().__init__(master)
         self.on_back = on_back
 
@@ -11,20 +16,9 @@ class MonitoringPage(ctk.CTkFrame):
             font=("Arial", 24)
         ).pack(pady=30)
 
-        ctk.CTkLabel(
-            self,
-            text="Monitoring is running..."
-        ).pack()
+        self.balance_label = ctk.CTkLabel(self, text="Total balance: ...")
+        self.balance_label.pack(pady=10)
 
-        # Back button
-        ctk.CTkButton(
-            self,
-            text="Return to Configuration",
-            command=self.on_back
-        ).pack(side="left", padx=10)
+        ctk.CTkButton(self, text="Return to Configuration", command=self.on_back).pack(side="left", padx=10)
+        ctk.CTkButton(self, text="Exit", command=master.destroy).pack(pady=20)
 
-        ctk.CTkButton(
-            self,
-            text="Exit",
-            command=master.destroy
-        ).pack(pady=20)

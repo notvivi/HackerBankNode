@@ -1,3 +1,4 @@
+#Author: Tomanová Vilma
 import ipaddress
 
 import customtkinter as ctk
@@ -5,6 +6,9 @@ from tkinter import filedialog, messagebox
 import json
 
 class FrontPage(ctk.CTkFrame):
+    """
+    Class for Front Page
+    """
     def __init__(self, master, on_config_saved, config_path):
         super().__init__(master)
         self.on_config_saved = on_config_saved
@@ -53,12 +57,17 @@ class FrontPage(ctk.CTkFrame):
         ).pack(pady=20)
 
     def select_file(self):
+        """
+        Opens file explorer for selecting a file.
+        """
         path = filedialog.askopenfilename()
         if path:
             self.log_file.set(path)
 
     def save(self):
-
+        """
+        Saves data from ui to config file.
+        """
         network = self.validate_network_ip()
         if not network:
             return
@@ -76,6 +85,9 @@ class FrontPage(ctk.CTkFrame):
         self.on_config_saved(data)
 
     def validate_network_ip(self):
+        """
+        Validates network ip address.
+        """
         try:
             network = ipaddress.IPv4Network(
                 f"{self.ip_network.get()}/{self.ip_mask.get()}",
@@ -88,6 +100,5 @@ class FrontPage(ctk.CTkFrame):
                 message="Inserted IP is invalid.",
                 icon="warning"
             )
-
             return None
 
