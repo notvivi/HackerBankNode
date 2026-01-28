@@ -1,10 +1,13 @@
+from infrastructure.db.session import SessionManager
+from infrastructure.data.repository import AccountRepository
+
 import logging
-from infrastructure.parsing.parser import parse
-from application.dtos.validation_error import ValidationError
+
+from src.application.dtos.validation_error import ValidationError
+from src.infrastructure.parsing.parser import parse
 
 
-
-async def handle_client(reader: asyncio.StreamReader, writer: asyncio.StreamWriter, factory):
+async def handle_client(reader, writer, factory):
     addr = writer.get_extra_info("peername")
     try:
         data = await reader.read(4096)
@@ -16,8 +19,11 @@ async def handle_client(reader: asyncio.StreamReader, writer: asyncio.StreamWrit
 
         try:
             parsed = parse(raw)
-            command = factory.create(parsed)
-            response = await command.execute()
+
+            async with SessionManager() as session:
+                repo = AccountRepository(session)
+                command = factory.create(parsed, repo, None)
+                response = await command.execute()
 
         except ValidationError as ve:
             response = f"ER {ve}"

@@ -19,14 +19,9 @@ def parse(raw: str) -> ParsedCommand:
             return ParsedCommand(code=code)
 
         case "AC":
-            if len(parts) != 2:
+            if len(parts) != 1:
                 raise ValidationError("Invalid AC format")
-            try:
-                account_str, ip_str = parts[1].split("/")
-                account_number = int(account_str)
-            except ValueError:
-                raise ValidationError("Account number must be integer")
-            return ParsedCommand(code=code, account=account_number, bank_ip=ip_str)
+            return ParsedCommand(code=code)
         case "AB" | "AR":
             if len(parts) != 2:
                 raise ValidationError("Invalid command format")

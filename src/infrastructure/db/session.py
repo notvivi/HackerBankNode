@@ -21,7 +21,7 @@ AsyncSessionLocal = sessionmaker(
 )
 
 class SessionManager:
-    """Async context manager для получения сессии"""
+    """Async context manager"""
 
     def __init__(self):
         self.session = None

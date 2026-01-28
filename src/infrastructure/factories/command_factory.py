@@ -8,23 +8,19 @@ from application.commands.ba import BankTotalAmmountCommand
 from application.commands.bn import BankNumberClientCommand
 
 class CommandFactory:
-    def __init__(self, local_ip: str, repo, proxy):
+    def __init__(self, local_ip: str):
         self._local_ip = local_ip
-        self._repo = repo
-        self._proxy = proxy
 
-    def create(self, parsed):
+    def create(self, parsed, repo, proxy):
         match parsed.code:
             case "BC":
                 return BankCodeCommand(self._local_ip)
 
             case "AC":
                 return CreateAccountCommand(
-                    account_number=parsed.account,
-                    bank_ip=self._local_ip,
                     local_ip=self._local_ip,
-                    repo=self._repo,
-                    proxy=self._proxy,
+                    repo=repo,
+                    proxy=proxy,
                 )
 
             case "AD":
@@ -33,8 +29,8 @@ class CommandFactory:
                     bank_ip=parsed.bank_ip,
                     amount=parsed.amount,
                     local_ip=self._local_ip,
-                    repo=self._repo,
-                    proxy=self._proxy,
+                    repo=repo,
+                    proxy=proxy,
                 )
 
             case "AW":
@@ -43,8 +39,8 @@ class CommandFactory:
                     bank_ip=parsed.bank_ip,
                     amount=parsed.amount,
                     local_ip=self._local_ip,
-                    repo=self._repo,
-                    proxy=self._proxy,
+                    repo=repo,
+                    proxy=proxy,
                 )
 
             case "AB":
@@ -52,8 +48,8 @@ class CommandFactory:
                     account=parsed.account,
                     bank_ip=parsed.bank_ip,
                     local_ip=self._local_ip,
-                    repo=self._repo,
-                    proxy=self._proxy,
+                    repo=repo,
+                    proxy=proxy,
                 )
 
             case "AR":
@@ -61,24 +57,24 @@ class CommandFactory:
                     account_number=parsed.account,
                     bank_ip=parsed.bank_ip,
                     local_ip=self._local_ip,
-                    repo=self._repo,
-                    proxy=self._proxy,
+                    repo=repo,
+                    proxy=proxy,
                 )
 
             case "BA":
                 return BankTotalAmmountCommand(
-                    repo=self._repo,
+                    repo=repo,
                     bank_ip=parsed.bank_ip,
                     local_ip=self._local_ip,
-                    proxy=self._proxy
+                    proxy=proxy
                 )
 
             case "BN":
                 return BankNumberClientCommand(
-                    repo=self._repo,
+                    repo=repo,
                     bank_ip=parsed.bank_ip,
                     local_ip=self._local_ip,
-                    proxy=self._proxy
+                    proxy=proxy
                 )
 
             case _:

@@ -1,12 +1,12 @@
+import socket
+import asyncio
+import logging
 from infrastructure.network.tcp_server import TCPServer
 from infrastructure.logging.logging_config import setup_logging
 from infrastructure.factories.command_factory import CommandFactory
 from infrastructure.data.repository import AccountRepository
 #from infrastructure.proxy.client import ProxyClient   # позже
 from infrastructure.db.session import SessionManager
-import socket
-import asyncio
-import logging
 from infrastructure.network.tcp_handler import handle_client
 from infrastructure.db.account_model import AccountModel
 from infrastructure.db.session import engine
@@ -26,7 +26,7 @@ async def main():
 
     async with SessionManager() as session:
         repo = AccountRepository(session)
-        factory = CommandFactory(local_ip=local_ip, repo=repo, proxy=None)
+        factory = CommandFactory(local_ip=local_ip)
 
 
     server = await asyncio.start_server(
