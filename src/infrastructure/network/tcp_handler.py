@@ -23,43 +23,44 @@ async def remove_connection():
         connection_count -= 1
         return connection_count
 
-
 async def handle_client(reader, writer, factory):
     addr = writer.get_extra_info("peername")
     await add_connection()
     response = "ER Internal server error"
 
     try:
-        data = await reader.read(4096)
-        if not data:
-            return
+        while True:
+            data = await reader.read(4096)
+            if not data:
+                break
 
-        raw = data.decode().strip()
-        logging.info(f"{addr} -> {raw}")
+            raw = data.decode().strip()
+            logging.info(f"{addr} -> {raw}")
 
-        try:
-            parsed = parse(raw)
+            try:
+                parsed = parse(raw)
 
-            async with SessionManager() as session:
-                repo = AccountRepository(session)
-                command = factory.create(parsed, repo, None)
+                async with SessionManager() as session:
+                    repo = AccountRepository(session)
+                    command = factory.create(parsed, repo, None)
 
-                if isinstance(command, ConnectionCountCommand):
-                    command.connection_count = connection_count
+                    if isinstance(command, ConnectionCountCommand):
+                        command.connection_count = connection_count
 
-                response = await command.execute()
+                    response = await command.execute()
 
-        except ValidationError as ve:
-            response = f"ER {ve}"
-        except Exception as e:
-            logging.exception(f"Command error: {e}")
-            response = "ER Internal server error"
+            except ValidationError as ve:
+                response = f"ER {ve}"
+            except Exception as e:
+                logging.exception(f"Command error: {e}")
+                response = "ER Internal server error"
 
-        logging.info(f"{addr} <- {response}")
-        writer.write((response + "\n").encode())
-        await writer.drain()
+            logging.info(f"{addr} <- {response}")
+            writer.write((response + "\n").encode())
+            await writer.drain()
 
     finally:
         await remove_connection()
         writer.close()
         await writer.wait_closed()
+
