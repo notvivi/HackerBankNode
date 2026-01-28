@@ -5,6 +5,7 @@ from infrastructure.data.repository import AccountRepository
 from application.dtos.validation_error import ValidationError
 from infrastructure.parsing.parser import parse
 from application.commands.cc import ConnectionCountCommand
+
 connection_count = 0
 connection_lock = asyncio.Lock()
 
@@ -26,6 +27,8 @@ async def remove_connection():
 async def handle_client(reader, writer, factory):
     addr = writer.get_extra_info("peername")
     await add_connection()
+    response = "ER Internal server error"
+
     try:
         data = await reader.read(4096)
         if not data:

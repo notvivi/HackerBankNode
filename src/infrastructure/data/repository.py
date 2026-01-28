@@ -20,28 +20,22 @@ class AccountRepository:
     def __init__(self, session: AsyncSession):
         self.session = session
 
-    async def add(self, number: int, balance: int) -> AccountModel:
+    async def add(self) -> AccountModel:
         """
         Create a new account and persist it in the database.
-
-        Parameters
-        ----------
-        number : int
-            Unique account number.
-        balance : int
-            Initial balance for the account.
 
         Returns
         -------
         AccountModel
             The created AccountModel instance with updated database fields.
         """
-        account = AccountModel(number=number, balance=balance)
+        account = AccountModel(number = 0, balance=0)
         self.session.add(account)
+        await self.session.flush()
 
+        account.number = account.id + 10000
         await self.session.flush()
         await self.session.refresh(account)
-
         return account
 
     async def get_account_by_number(self, number: int) -> AccountModel | None:
