@@ -47,5 +47,6 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         print(f'\nExiting...')
-    except Exception:
+    except Exception as e:
+        logging.exception(e)
         print('\nInternal Server Error\nExiting')
