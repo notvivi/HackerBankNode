@@ -12,12 +12,10 @@ class CreateAccountCommand(Command):
         self._proxy = proxy
 
     async def execute(self) -> str:
-        for _ in range(5):  # avoid infinite loop
-            acc = Account(random.randint(10000, 99999), 0)
-            try:
-                await self._repo.add(acc.number, acc.balance)
-                return f"AC {acc.number}/{self._local_ip}"
-            except IntegrityError:
-                await self._repo.session.rollback()
-
-        raise DomainError("Unable to generate unique account number")
+        try:
+            print(1)
+            acc = await self._repo.add()
+            print(2)
+            return f"AC {acc.number}/{self._local_ip}"
+        except Exception:
+            await self._repo.session.rollback()
