@@ -22,4 +22,5 @@ class RemoveAccountCommand(Command):
         await self._repo.delete_account(account.number)
 
         return f"AR"
-
+    def to_raw(self) -> str:
+        return f"AR"

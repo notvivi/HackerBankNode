@@ -8,8 +8,12 @@ class BankNumberClientCommand(Command):
         self._local_ip = local_ip
         self._repo = repo
         self._proxy = proxy
+        self.result = 0
 
     async def execute(self) -> str:
         result = await self._repo.get_total_customer_count()
-
+        self.result = result
         return f"BN {result}"
+
+    def to_raw(self) -> str:
+        return f"BN {self.result}"

@@ -41,6 +41,18 @@ def parse(raw: str) -> ParsedCommand:
                 bank_ip=m.group(2),
             )
 
+        case "RP":
+            if len(parts) != 2:
+                raise ValidationError("Invalid RP format")
+
+            if not parts[1].isdigit():
+                raise ValidationError("RP amount must be a number")
+
+            return ParsedCommand(
+                code="RP",
+                amount=int(parts[1])
+            )
+
         case "AD" | "AW":
             if len(parts) != 3:
                 raise ValidationError("Invalid command format")

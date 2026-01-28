@@ -7,10 +7,13 @@ from application.commands.ar import RemoveAccountCommand
 from application.commands.ba import BankTotalAmmountCommand
 from application.commands.bn import BankNumberClientCommand
 from application.commands.cc import ConnectionCountCommand
+from application.commands.rp import RobberyPlanCommand
+from infrastructure.network.scanner import OnDemandNetworkScanner
 
 class CommandFactory:
-    def __init__(self, local_ip: str):
+    def __init__(self, local_ip: str, config):
         self._local_ip = local_ip
+        self._config = config
 
     def create(self, parsed, repo, proxy):
         match parsed.code:
@@ -78,6 +81,9 @@ class CommandFactory:
                     local_ip=self._local_ip,
                     proxy=proxy
                 )
+            case "RP":
+                scanner = OnDemandNetworkScanner(self._config, proxy)
+                return RobberyPlanCommand(parsed.amount, scanner)
 
             case _:
                 raise RuntimeError("Command not supported")
