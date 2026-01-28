@@ -25,7 +25,6 @@ async def main():
     print(local_ip)
 
     async with SessionManager() as session:
-        repo = AccountRepository(session)
         factory = CommandFactory(local_ip=local_ip)
 
 
@@ -43,5 +42,10 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(init_db())
-    asyncio.run(main())
+    try:
+        asyncio.run(init_db())
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print(f'\nExiting...')
+    except Exception:
+        print('\nInternal Server Error\nExiting')

@@ -22,6 +22,11 @@ def parse(raw: str) -> ParsedCommand:
             if len(parts) != 1:
                 raise ValidationError("Invalid AC format")
             return ParsedCommand(code=code)
+
+        case "CC":
+            if len(parts) != 1:
+                raise ValidationError("Invalid CC format")
+            return ParsedCommand(code=code)
         case "AB" | "AR":
             if len(parts) != 2:
                 raise ValidationError("Invalid command format")
