@@ -13,9 +13,9 @@ class CreateAccountCommand(Command):
 
     async def execute(self) -> str:
         try:
-            print(1)
             acc = await self._repo.add()
-            print(2)
             return f"AC {acc.number}/{self._local_ip}"
         except Exception:
             await self._repo.session.rollback()
+    def to_raw(self) -> str:
+        return f"AC {acc.number}/{self._local_ip}"

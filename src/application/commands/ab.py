@@ -11,8 +11,9 @@ class BalanceCommand(Command):
 
     async def execute(self) -> str:
         if self._bank_ip != self._local_ip:
-            return await self._proxy.forward(
-                f"AB {self._account}/{self._bank_ip}"
+            return await self._proxy.execute(
+                self,
+                self._bank_ip
             )
 
         acc = await self._repo.get_account_by_number(self._account)
@@ -21,3 +22,5 @@ class BalanceCommand(Command):
 
         return f"AB {acc.balance}"
 
+    def to_raw(self) -> str:
+        return f"AB {self._account}/{self._bank_ip}"

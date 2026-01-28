@@ -1,6 +1,6 @@
 {
   "log_file": "C:/Users/vtoma/Downloads/logtest.txt.txt",
-  "port": 65525,
+  "port": 65526,
   "timeout": 5,
   "ip_network": "192.168.1.0",
   "ip_mask": 24,
