@@ -39,7 +39,7 @@ class AccountRepository:
         account = AccountModel(number=number, balance=balance)
         self.session.add(account)
 
-        await self.session.commit()
+        await self.session.flush()
         await self.session.refresh(account)
 
         return account
@@ -96,7 +96,7 @@ class AccountRepository:
             return None
 
         account.balance = new_balance
-        await self.session.commit()
+        await self.session.flush()
         await self.session.refresh(account)
 
         return account
@@ -118,9 +118,8 @@ class AccountRepository:
         account = await self.get_account_by_number(number)
         if account is None:
             return False
-
+        await self.session.flush()
         self.session.delete(account)
-        await self.session.commit()
 
         return True
 
