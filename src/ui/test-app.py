@@ -10,8 +10,9 @@ sys.path.insert(0, os.path.join(base_path, "lib"))
 import customtkinter as ctk
 from frontpage import FrontPage
 from monitoring import MonitoringPage
-from tkinter import messagebox
+from tkinter import messagebox, Image
 import resource_path
+
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -25,7 +26,7 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("Hacker Bank Node")
-        self.geometry("600x500")
+        self.geometry("750x400")
 
         self.app_config = load_config()
         self.frontpage = FrontPage(self, self.update_config_and_monitoring, CONFIG_PATH)
@@ -56,9 +57,11 @@ class App(ctk.CTk):
         """
         self.frontpage.pack_forget()
 
-        if self.monitoring is None:
-            self.monitoring = MonitoringPage(self,self.open_frontpage)
+        if self.monitoring:
+            self.monitoring.pack_forget()
+            self.monitoring.destroy()
 
+        self.monitoring = MonitoringPage(self, self.open_frontpage, self.app_config)
         self.monitoring.pack(fill="both", expand=True)
 
     def open_frontpage(self):
