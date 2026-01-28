@@ -1,10 +1,8 @@
+import logging
 from infrastructure.db.session import SessionManager
 from infrastructure.data.repository import AccountRepository
-
-import logging
-
-from src.application.dtos.validation_error import ValidationError
-from src.infrastructure.parsing.parser import parse
+from application.dtos.validation_error import ValidationError
+from infrastructure.parsing.parser import parse
 
 
 async def handle_client(reader, writer, factory):
