@@ -33,6 +33,7 @@ async def main():
         port=config.port,
         timeout=config.timeout,
     )
+    print(proxy.port)
 
     factory = CommandFactory(
         local_ip=local_ip,
