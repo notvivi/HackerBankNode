@@ -9,6 +9,25 @@ from application.commands.cc import ConnectionCountCommand
 connection_count = 0
 connection_lock = asyncio.Lock()
 
+WELCOME_MESSAGE = """\
+=======================================
+------------------------- HACKER BANK -------------------------
+=======================================
+Command List:
+---------------------------------------------------------------
+Name                     Command
+---------------------------------------------------------------
+Bank code                 BC
+Account create            AC
+Account deposit           AD <account>/<bank_ip> <amount>
+Account withdrawal        AW <account>/<bank_ip> <amount>
+Account balance           AB <account>/<bank_ip>
+Account remove            AR <account>/<bank_ip>
+Bank total amount         BA <bank_ip>
+Bank number of clients    BN <bank_ip>
+---------------------------------------------------------------
+"""
+
 
 async def add_connection():
     global connection_count
@@ -29,6 +48,9 @@ async def handle_client(reader, writer, factory):
     response = "ER Internal server error"
 
     try:
+        writer.write((WELCOME_MESSAGE + "\n").encode())
+        await writer.drain()
+
         while True:
             data = await reader.read(4096)
             if not data:
