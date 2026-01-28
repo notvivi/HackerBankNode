@@ -6,6 +6,7 @@ from application.commands.ab import BalanceCommand
 from application.commands.ar import RemoveAccountCommand
 from application.commands.ba import BankTotalAmmountCommand
 from application.commands.bn import BankNumberClientCommand
+from application.commands.cc import ConnectionCountCommand
 
 class CommandFactory:
     def __init__(self, local_ip: str):
@@ -22,7 +23,8 @@ class CommandFactory:
                     repo=repo,
                     proxy=proxy,
                 )
-
+            case "CC":
+                return ConnectionCountCommand(connection_count=None)
             case "AD":
                 return DepositCommand(
                     account=parsed.account,
