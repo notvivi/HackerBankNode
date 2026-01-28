@@ -1,6 +1,6 @@
 {
-  "log_file": "/home/icykcypher/RiderProjects/log.log",
-  "port": 65525,
+  "log_file": "C:/Users/vtoma/Downloads/text.log",
+  "port": 65530,
   "timeout": 5,
   "ip_network": "127.0.0.0",
   "ip_mask": 30,
