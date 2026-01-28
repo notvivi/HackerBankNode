@@ -112,8 +112,8 @@ class AccountRepository:
         account = await self.get_account_by_number(number)
         if account is None:
             return False
-        await self.session.flush()
-        self.session.delete(account)
+
+        await self.session.delete(account)
 
         return True
 
