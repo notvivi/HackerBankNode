@@ -17,7 +17,7 @@ class RemoveAccountCommand(Command):
         account = await self._repo.get_account_by_number(self._account_number)
 
         if not account:
-            raise DomainError("Account does not exists")
+            return f"AR Account does not exists"
 
         await self._repo.delete_account(account.number)
 

@@ -5,7 +5,7 @@ from infrastructure.data.repository import AccountRepository
 from application.dtos.validation_error import ValidationError
 from infrastructure.parsing.parser import parse
 from application.commands.cc import ConnectionCountCommand
-
+from domain.bank.errors import DomainError
 connection_count = 0
 connection_lock = asyncio.Lock()
 
@@ -76,6 +76,8 @@ async def handle_client(reader, writer, factory):
 
             except ValidationError as ve:
                 response = f"ER {ve}"
+            except DomainError as de:
+                response = f"ER {de}"
             except Exception as e:
                 logging.exception(f"Command error: {e}")
                 response = "ER Internal server error"
