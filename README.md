@@ -80,7 +80,7 @@ Invalid or missing parameters result in application startup failure.
 | Bank number of clients   | BN   | `BN`                          | `BN <number>`           | `ER <message>` |
 
 Explanation:
-- `<ip>`, IP address in the format `0.0.0.0 - 255.255.255.255`, which is used as the **bank code** (used as **unique identifier** for each bank node).
+- `<ip>` IP address in the format `0.0.0.0 - 255.255.255.255`, which is used as the **bank code** (used as **unique identifier** for each bank node).
 - `<account>` A positive integer in the range `10000 to 99999`, which is used as the **bank account number** within a bank.
 - `<number>` A non-negative integer in the range `0 to 9223372036854775807`
 
