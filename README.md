@@ -11,6 +11,8 @@
 - mypy 1.8.0
 - ruff 0.2.1
 - pytest 8.0.0
+- asyncio
+- aiosqlite
 
 ## Key features
 - Creating and managing bank accounts
@@ -22,18 +24,21 @@
 - Logging
 
 ## Table of Contents
-- [Project Setup](#project-setup)
-- [Package Installation](#package-installation-from-requirementstxt)
+- [Installation](#installation)
 - [Configuration](#configuration)
 - [Supported Commands](#supported-commands)
 - [Workflow](#workflow)
 - [Documentation](#documentation)
 
-## Project setup
------ Will be added soon -----
-
-## Package installation (from requirements.txt)
------ Will be added soon -----
+## Installation
+```bash
+git clone https://github.com/notvivi/HackerBankNode.git
+cd HackerBankNode/
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python src/main.py 
+```
 
 ## Configuration
 See example configuration: [`config.json`](src/config.json)
@@ -75,7 +80,7 @@ Invalid or missing parameters result in application startup failure.
 | Bank number of clients   | BN   | `BN`                          | `BN <number>`           | `ER <message>` |
 
 Explanation:
-- `<ip>`, IP address in the format `0.0.0.0 - 255.255.255.255`, which is used as the **bank code** (used as **unique identifier** for each bank node).
+- `<ip>` IP address in the format `0.0.0.0 - 255.255.255.255`, which is used as the **bank code** (used as **unique identifier** for each bank node).
 - `<account>` A positive integer in the range `10000 to 99999`, which is used as the **bank account number** within a bank.
 - `<number>` A non-negative integer in the range `0 to 9223372036854775807`
 
