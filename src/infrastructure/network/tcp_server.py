@@ -1,47 +1,26 @@
-import socket
-import threading
-from infrastructure.network.tcp_handler import handle_client
+import asyncio
 import logging
-
+from infrastructure.network.tcp_handler import handle_client
 
 class TCPServer:
-    def __init__(self, host: str, port: int, factory, timeout: int = 5, max_connections: int = 100):
+    def __init__(self, host: str, port: int, factory):
         self.host = host
         self.port = port
         self.factory = factory
-        self.timeout = timeout
-        self.max_connections = max_connections
-        self.running = False
+        self.server = None
 
-    def start(self):
-        self.running = True
+    async def start(self):
+        self.server = await asyncio.start_server(
+            lambda r, w: handle_client(r, w, self.factory),
+            self.host, self.port
+        )
+        addr = self.server.sockets[0].getsockname()
+        logging.info(f"Bank node listening on {addr}")
 
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        async with self.server:
+            await self.server.serve_forever()
 
-        server_socket.bind((self.host, self.port))
-        server_socket.listen(self.max_connections)
-
-        logging.info(f"Bank node listening on {self.host}:{self.port}")
-
-        while self.running:
-            try:
-                client_socket, addr = server_socket.accept()
-
-                logging.info(f"Connection from {addr}")
-
-                client_socket.settimeout(self.timeout)
-
-                thread = threading.Thread(
-                    target=handle_client,
-                    args=(client_socket, addr, self.factory, self.timeout),
-                    daemon=True
-                )
-                thread.start()
-
-            except Exception as e:
-                logging.error(f"Server error: {e}")
-
-    def stop(self):
-        self.running = False
-
+    async def stop(self):
+        if self.server:
+            self.server.close()
+            await self.server.wait_closed()
