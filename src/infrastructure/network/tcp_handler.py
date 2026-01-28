@@ -10,9 +10,9 @@ connection_count = 0
 connection_lock = asyncio.Lock()
 
 WELCOME_MESSAGE = """\
-=======================================
+===============================================================
 ------------------------- HACKER BANK -------------------------
-=======================================
+===============================================================
 Command List:
 ---------------------------------------------------------------
 Name                     Command
@@ -28,6 +28,8 @@ Bank number of clients    BN <bank_ip>
 ---------------------------------------------------------------
 """
 
+def format_for_terminal(msg: str) -> str:
+    return msg.replace("\n", "\r\n")
 
 async def add_connection():
     global connection_count
@@ -42,13 +44,14 @@ async def remove_connection():
         connection_count -= 1
         return connection_count
 
+
 async def handle_client(reader, writer, factory):
     addr = writer.get_extra_info("peername")
     await add_connection()
     response = "ER Internal server error"
 
     try:
-        writer.write((WELCOME_MESSAGE + "\n").encode())
+        writer.write(format_for_terminal(WELCOME_MESSAGE + "\r\n").encode())
         await writer.drain()
 
         while True:
@@ -78,11 +81,10 @@ async def handle_client(reader, writer, factory):
                 response = "ER Internal server error"
 
             logging.info(f"{addr} <- {response}")
-            writer.write((response + "\n").encode())
+            writer.write(format_for_terminal(response + "\r\n").encode())
             await writer.drain()
 
     finally:
         await remove_connection()
         writer.close()
         await writer.wait_closed()
-
