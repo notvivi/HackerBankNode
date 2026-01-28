@@ -12,7 +12,7 @@ class RemoveAccountCommand(Command):
 
     async def execute(self) -> str:
         if self._bank_ip != self._local_ip:
-            return await self._proxy.forward(f"AR {self._account_number}/{self._bank_ip}")
+            return await self._proxy.execute(self, self._bank_ip)
 
         account = await self._repo.get_account_by_number(self._account_number)
 
@@ -22,4 +22,5 @@ class RemoveAccountCommand(Command):
         await self._repo.delete_account(account.number)
 
         return f"AR"
-
+    def to_raw(self) -> str:
+        return f"AR"

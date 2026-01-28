@@ -45,15 +45,12 @@ async def remove_connection():
         return connection_count
 
 
-async def handle_client(reader, writer, factory):
+async def handle_client(reader, writer, factory, proxy):
     addr = writer.get_extra_info("peername")
     await add_connection()
     response = "ER Internal server error"
 
     try:
-        writer.write(format_for_terminal(WELCOME_MESSAGE + "\r\n").encode())
-        await writer.drain()
-
         while True:
             data = await reader.read(4096)
             if not data:
@@ -63,11 +60,16 @@ async def handle_client(reader, writer, factory):
             logging.info(f"{addr} -> {raw}")
 
             try:
+                if raw == 'ui':
+                    writer.write(format_for_terminal(WELCOME_MESSAGE + "\r\n").encode())
+                    await writer.drain()
+                    continue
+
                 parsed = parse(raw)
 
                 async with SessionManager() as session:
                     repo = AccountRepository(session)
-                    command = factory.create(parsed, repo, None)
+                    command = factory.create(parsed, repo, proxy)
 
                     if isinstance(command, ConnectionCountCommand):
                         command.connection_count = connection_count

@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [0.1.0] - 2026-01-28
+*Author: Solonitsyn Maksym*
+#### Added
+- added command menu for each tcp connection
+- added proxy
+- added robery plan
+#### Changed
+- N/A
+#### Deprecated
+- N/A
+
+#### Removed
+- N/A
+
+#### Fixed
+- fix: fixed account number generation (#27)
+- server timeout
+- fixed text format for putty
+- fixed account removal
+- config path
+#### Security
+- N/A
+
+### [0.1.0] - 2026-01-27
+*Author: Solonitsyn Maksym*
+#### Added
+- Implement bank commands with domain logic
+- Tcp command parsing and validation
+#### Changed
+- Dependency injection and logging setup
+- Main entrypoint and settings cleanup
+#### Deprecated
+- N/A
+
+#### Removed
+- N/A
+
+#### Fixed
+- Db async session lifecycle and repository awaits
+- Db commit error
+- pip dependencies
+- fixed fatal error logging
+#### Security
+- N/A
+
 ### [0.1.0] - 2026-01-27
 *Author: Vilma Tomanová*
 #### Added
@@ -18,10 +63,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Removed
 - N/A
-  
+
 #### Fixed
-- Fixed config.json loading 
-  
+- Fixed config.json loading
+
 #### Security
 - N/A
 
@@ -37,10 +82,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Removed
 - N/A
-  
+
 #### Fixed
 - Fixed exception error and import error
-  
+
 #### Security
 - N/A
 
