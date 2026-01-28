@@ -1,5 +1,5 @@
 {
-  "log_file": "C:/Users/vtoma/Downloads/logtest.txt.txt",
+  "log_file": "C:/Users/vtoma/Downloads/logtest.txt",
   "port": 65525,
   "timeout": 5,
   "ip_network": "192.168.1.0",
