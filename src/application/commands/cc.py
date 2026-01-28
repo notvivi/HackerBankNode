@@ -6,3 +6,6 @@ class ConnectionCountCommand(Command):
 
     async def execute(self) -> str:
         return f"CC {self.connection_count}"
+
+    def to_raw(self) -> str:
+       return f"CC {self.connection_count}"

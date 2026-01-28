@@ -6,3 +6,6 @@ class BankCodeCommand(Command):
 
     async def execute(self) -> str:
         return f"BC {self._local_ip}"
+
+    def to_raw(self) -> str:
+        return f"BC {self._local_ip}"

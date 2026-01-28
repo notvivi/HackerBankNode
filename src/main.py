@@ -36,6 +36,7 @@ async def main():
 
     factory = CommandFactory(
         local_ip=local_ip,
+        config = config
     )
 
     await init_db()

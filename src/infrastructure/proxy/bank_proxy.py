@@ -42,3 +42,30 @@ class BankProxy:
             logging.exception(f"Proxy error forwarding to {bank_ip}: {e}")
             return "ER Could not forward command"
 
+    async def is_bank(self, ip, port, timeout) -> bool:
+        try:
+            reader, writer = await asyncio.wait_for(
+                asyncio.open_connection(ip, port),
+                timeout
+            )
+            writer.write(b"BC\n")
+            await writer.drain()
+
+            data = await asyncio.wait_for(reader.read(64), timeout)
+            writer.close()
+            await writer.wait_closed()
+
+            return data.startswith(b"BC")
+        except Exception:
+            return False
+
+    async def raw(self, ip, port, cmd: str) -> str:
+        reader, writer = await asyncio.open_connection(ip, port)
+        writer.write(f"{cmd}\n".encode())
+        await writer.drain()
+
+        data = await reader.read(128)
+        writer.close()
+        await writer.wait_closed()
+
+        return data.decode().strip()
