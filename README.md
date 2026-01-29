@@ -29,6 +29,8 @@
 - [Supported Commands](#supported-commands)
 - [Workflow](#workflow)
 - [Documentation](#documentation)
+- [Old project links](#old-project-links)
+
 
 ## Installation
 ```bash
@@ -39,6 +41,27 @@ source .venv/bin/activate
 pip install -r requirements.txt
 python src/main.py 
 ```
+## Server Usage
+1. Navigate to `..\HackerBankNode\src\ui\dist\app` and launch **app.exe**.
+2. To modify configuration parameters, select **Return to Configuration**, adjust the settings as needed, and save the changes.
+3. Open a terminal and navigate to the project root directory:
+```bash
+cd HackerBankNode/
+```
+4. Start the server by running:
+```bash
+python src/main.py
+```
+
+## Client usage
+1. Open PuTTY.
+2. Configure the connection with the following settings:
+- Host Name (or IP address): Enter the server’s IP address.
+- Port: Enter the server’s port number.
+- Connection type: Select Raw.
+- Click Open to establish the connection.
+3. Once connected, type ui and press Enter to display all available server commands.
+
 
 ## Configuration
 See example configuration: [`config.json`](src/config.json)
@@ -84,11 +107,13 @@ Explanation:
 - `<account>` A positive integer in the range `10000 to 99999`, which is used as the **bank account number** within a bank.
 - `<number>` A non-negative integer in the range `0 to 9223372036854775807`
 
-### Command extension for our assignment
+### Command extension for our assignment + bonus
 
 | Name                  | Code | Call            | Success Response | Error Response |
 |-----------------------|------|-----------------|------------------|----------------|
 | Robbery plan (local)  | RP   | `RP <number>`   | `RP <message>`   | `ER <message>` |
+| User interface        | ui   | `ui`            | `Bank header`    | `ER <message>` |
+
 
 - RP 1000000
 - Example response: `RP To reach 1000000$, banks 10.1.2.3 and 10.1.2.85 must be robbed, affecting only 21 clients.`
@@ -99,6 +124,13 @@ Explanation:
 3. Command is: executed locally or proxied to another node
 4. Response is returned to client
 5. Client closes the connection
+
+## Old project links
+`Author: Tomanová Vilma`
+- [User interface](https://github.com/notvivi/Debian-Autoconfig/blob/master/src/userinterface.py)
+- [Relative paths](https://github.com/notvivi/Debian-Autoconfig/blob/master/lib/resource_path.py)
+- [Documentation structure](https://github.com/notvivi/DatabaseManagementForShop/blob/main/doc/documentation.pdf)
+
 
 ## Documentation
 - README.md – project overview and usage
