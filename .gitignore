@@ -16,8 +16,6 @@ pyvenv.cfg
 # ===============================
 # Packaging / build artifacts
 # ===============================
-build/
-dist/
 .eggs/
 *.egg-info/
 .eggs/

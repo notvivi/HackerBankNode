@@ -1,0 +1,10 @@
+{
+  "log_file": "C:/Users/vtoma/Downloads/text.log",
+  "port": 65525,
+  "timeout": 5,
+  "ip_network": "192.168.1.0",
+  "ip_mask": 24,
+  "database": {
+    "sqlite_path": "db/hackerbank.db"
+  }
+}
