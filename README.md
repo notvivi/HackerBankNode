@@ -41,7 +41,6 @@ cd HackerBankNode/
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python src/main.py 
 ```
 ## Server Usage
 1. Navigate to `..\HackerBankNode\src\ui\dist\app` and launch **app.exe**.
