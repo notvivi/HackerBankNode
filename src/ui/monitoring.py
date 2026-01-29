@@ -105,7 +105,7 @@ class MonitoringPage(ctk.CTkFrame):
         else:
             bn_value = bn or 0
         try:
-            total_clients = max(0, int(bn_value) - 1)
+            total_clients = max(0, int(bn_value))
         except (TypeError, ValueError):
             total_clients = "ERROR"
         self.clients_label.configure(text=str(total_clients))
