@@ -25,11 +25,13 @@
 
 ## Table of Contents
 - [Installation](#installation)
+- [Server Usage](#server-usage)
+- [Client usage](#client-usage)
 - [Configuration](#configuration)
 - [Supported Commands](#supported-commands)
 - [Workflow](#workflow)
-- [Documentation](#documentation)
 - [Old project links](#old-project-links)
+- [Documentation](#documentation)
 
 
 ## Installation
@@ -138,3 +140,5 @@ Explanation:
 - [CONTRIBUTING.md](CONTRIBUTING.md) - tutorial for contribution into project
 - [documentation.pdf](doc/documentation.pdf) - overall documentation (readme is shortened )
 - [license](LICENSE) - used license for this project
+
+####  Useful command: `pyinstaller --paths ../../lib --add-data "../../src/config.json;src" app.py`
