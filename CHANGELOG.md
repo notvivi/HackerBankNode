@@ -8,20 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [0.1.0] - 2026-01-29
 *Author: Tomanová Vilma*
-#### Added
-- N/A
-#### Changed
-- N/A
-#### Deprecated
-- N/A
 #### Removed
 - Removed exe file
-  
-#### Fixed
-N/A
-  
-#### Security
-- N/A
 
 ### [0.1.0] - 2026-01-28 and 2026-01-29
 *Author: Tomanová Vilma*
@@ -32,20 +20,9 @@ N/A
 - Added ui monitoring visuals for bank
 - Added client for retrieving data from the server
 - Added parser for parsing commands
-#### Changed
-- N/A
-#### Deprecated
-- N/A
 
-#### Removed
-- N/A
-- 
 #### Fixed
 - fixed getting data from config file
-  
-#### Security
-- N/A
-
 
 ### [0.1.0] - 2026-01-28
 *Author: Solonitsyn Maksym*
@@ -53,13 +30,6 @@ N/A
 - added command menu for each tcp connection
 - added proxy
 - added robery plan
-#### Changed
-- N/A
-#### Deprecated
-- N/A
-
-#### Removed
-- N/A
 
 #### Fixed
 - fix: fixed account number generation (#27)
@@ -67,8 +37,6 @@ N/A
 - fixed text format for putty
 - fixed account removal
 - config path
-#### Security
-- N/A
 
 ### [0.1.0] - 2026-01-27
 *Author: Solonitsyn Maksym*
@@ -78,58 +46,29 @@ N/A
 #### Changed
 - Dependency injection and logging setup
 - Main entrypoint and settings cleanup
-#### Deprecated
-- N/A
-
-#### Removed
-- N/A
 
 #### Fixed
 - Db async session lifecycle and repository awaits
 - Db commit error
 - pip dependencies
 - fixed fatal error logging
-#### Security
-- N/A
-
+  
 ### [0.1.0] - 2026-01-27
 *Author: Vilma Tomanová*
 #### Added
 - Added config.json error handling
 - Added ip network and mask visuals in the ui
-#### Changed
-- N/A
-
-#### Deprecated
-- N/A
-
-#### Removed
-- N/A
 
 #### Fixed
 - Fixed config.json loading
-
-#### Security
-- N/A
 
 ### [0.1.0] - 2026-01-26
 *Author: Vilma Tomanová*
 #### Added
 - Added ip network and ip mask into the config file
-#### Changed
-- N/A
-
-#### Deprecated
-- N/A
-
-#### Removed
-- N/A
 
 #### Fixed
 - Fixed exception error and import error
-
-#### Security
-- N/A
 
 ### [0.1.0] - 2026-01-25
 *Author: Solonitsyn Maksym*
@@ -137,20 +76,6 @@ N/A
 - Added account repository
 - Added database async sessions
 - Added settings for parsing 'config.json' for database connection
-#### Changed
-- N/A
-
-#### Deprecated
-- N/A
-
-#### Removed
-- N/A
-
-#### Fixed
-- N/A
-
-#### Security
-- N/A
 
 ### [0.1.0] - 2026-01-25
 *Author: Vilma Tomanová*
@@ -158,39 +83,15 @@ N/A
 - Added config file (log file path, port and timeout)
 - Added script for managing file paths
 - Added basic UI visuals for monitoring bank node
-#### Changed
-- N/A
-
-#### Deprecated
-- N/A
-
-#### Removed
-- N/A
-
-#### Fixed
-- N/A
-#### Security
-- N/A
 
 ### [0.1.0] - 2026-01-24
 *Author: Solonitsyn Maksym*
 #### Added
 - Added requirements.txt for pip env installation
 - Added unit test for testing banking account
-#### Changed
-- N/A
-
-#### Deprecated
-- N/A
-
-#### Removed
-- N/A
 
 #### Fixed
 - Python Github Actions CI pipeline for mypy, linters, black
-
-#### Security
-- N/A
 
 ### [0.1.0] - 2026-01-23
 *Author: Solonitsyn Maksym*
@@ -204,18 +105,6 @@ N/A
   - Input validation for initial number and balance.
 - Added `DomainError` exception handling in domain methods for invariant violations.
 - Implemented docstrings for all classes and methods following detailed specifications.
-
-#### Changed
-- N/A
-
-#### Deprecated
-- N/A
-
-#### Removed
-- N/A
-
-#### Fixed
-- N/A
 
 #### Security
 - Direct modification of account state is prohibited; all changes must go through domain methods to maintain business invariants.
