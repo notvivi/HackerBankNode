@@ -43,13 +43,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 ## Server Usage
-1. Navigate to `..\HackerBankNode\src\ui\dist\app` and launch **app.exe**.
-2. To modify configuration parameters, select **Return to Configuration**, adjust the settings as needed, and save the changes.
-3. Open a terminal and navigate to the project root directory:
+1. Open a terminal and navigate to the project root directory and start the ui:
 ```bash
 cd HackerBankNode/
+python src/ui/app.py
 ```
-4. Start the server by running:
+2. To modify configuration parameters, select **Return to Configuration**, adjust the settings as needed, and save the changes.
+3. Start the server by running:
 ```bash
 python src/main.py
 ```
