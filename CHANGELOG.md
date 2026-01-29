@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [0.1.0] - 2026-01-28 and 2026-01-29
+*Author: Tomanová Vilma*
+#### Added
+- Added readme
+- Added documentation
+- Added exe file
+- Added ui monitoring visuals for bank
+- Added client for retrieving data from the server
+- Added parser for parsing commands
+#### Changed
+- N/A
+#### Deprecated
+- N/A
+
+#### Removed
+- N/A
+- 
+#### Fixed
+- fixed getting data from config file
+  
+#### Security
+- N/A
+
+
 ### [0.1.0] - 2026-01-28
 *Author: Solonitsyn Maksym*
 #### Added
